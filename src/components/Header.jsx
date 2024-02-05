@@ -52,7 +52,7 @@ export default function Header() {
     <Navbar className="border-b-2">
       <div className="">
         <img
-          style={{ width: 40, margin: 0 }}
+          style={{ width: 40, margin: 0, borderRadius: 50 }}
           id="logo"
           src="https://live.staticflickr.com/65535/52236022987_b30bb04224_h.jpg"
         />

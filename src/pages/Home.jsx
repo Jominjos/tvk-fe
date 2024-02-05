@@ -15,7 +15,17 @@ export default function Home() {
     const fetchPosts = async () => {
       const res = await fetch("/api/post/getPosts");
       const data = await res.json();
+      console.log("getting posts");
       setPosts(data.posts);
+      // setPosts([
+      //   {
+      //     title: "Blog name",
+      //     category: "article category",
+      //     image:
+      //       "https://live.staticflickr.com/65535/52982259731_5c36b72b09_b.jpg",
+      //     slug: "as",
+      //   },
+      // ]);
     };
     fetchPosts();
   }, []);
@@ -40,7 +50,7 @@ export default function Home() {
       <div>
         <Carousel>
           {slides.map((s) => (
-            <img src={s} />
+            <img src={s} key={s} />
           ))}
         </Carousel>
       </div>
