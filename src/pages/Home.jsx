@@ -3,7 +3,7 @@ import CallToAction from "../components/CallToAction";
 import { useEffect, useState } from "react";
 import PostCard from "../components/PostCard";
 import Carousel from "../components/Carousel";
-
+import { API_BASE_URL } from "../config";
 export default function Home() {
   const [posts, setPosts] = useState([]);
   const slides = [
@@ -13,7 +13,7 @@ export default function Home() {
   ];
   useEffect(() => {
     const fetchPosts = async () => {
-      const res = await fetch("https://tvk.onrender.com/api/post/getPosts", {
+      const res = await fetch(`${API_BASE_URL}/api/post/getPosts`, {
         method: "GET",
         credentials: "include",
         headers: {

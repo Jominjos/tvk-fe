@@ -253,14 +253,14 @@ export default function DashProfile() {
           </Link>
         )}
       </form>
-      <div className="text-red-500 flex justify-between mt-5">
+      {/* <div className="text-red-500 flex justify-between mt-5">
         <span onClick={() => setShowModal(true)} className="cursor-pointer">
           Delete Account
         </span>
         <span onClick={handleSignout} className="cursor-pointer">
           Sign Out
         </span>
-      </div>
+      </div> */}
       {updateUserSuccess && (
         <Alert color="success" className="mt-5">
           {updateUserSuccess}
