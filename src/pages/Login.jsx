@@ -7,6 +7,8 @@ import {
   signInSuccess,
   signInFailure,
 } from "../redux/user/userSlice";
+import { API_BASE_URL } from "../config";
+
 // import OAuth from "../components/OAuth";
 
 export default function Login() {
@@ -24,7 +26,7 @@ export default function Login() {
     }
     try {
       dispatch(signInStart());
-      const res = await fetch(`/api/auth/signin`, {
+      const res = await fetch(`${API_BASE_URL}/api/auth/signin`, {
         method: "POST",
         headers: { "Content-Type": "application/json" },
         body: JSON.stringify(formData),
