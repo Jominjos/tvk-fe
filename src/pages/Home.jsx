@@ -13,7 +13,14 @@ export default function Home() {
   ];
   useEffect(() => {
     const fetchPosts = async () => {
-      const res = await fetch("/api/post/getPosts");
+      const res = await fetch("https://tvk.onrender.com/api/post/getPosts", {
+        method: "GET",
+        credentials: "include",
+        headers: {
+          "Content-Type": "application/json",
+          // Other headers if needed
+        },
+      });
       const data = await res.json();
       console.log("getting posts");
       setPosts(data.posts);
