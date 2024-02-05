@@ -46,7 +46,7 @@ export default function Carousel({
           {slides.map((_, i) => (
             <div
               className={`
-              transition-all w-3 h-3 bg-white rounded-full
+              transition-all w-3 h-3 bg-red-600 rounded-full
               ${curr === i ? "p-2" : "bg-opacity-50"}
             `}
               key={i}
