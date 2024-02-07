@@ -2,8 +2,9 @@ import { Modal, Table, Button } from "flowbite-react";
 import { useEffect, useState } from "react";
 import { useSelector } from "react-redux";
 import { HiOutlineExclamationCircle } from "react-icons/hi";
-import { FaCheck, FaTimes } from "react-icons/fa";
+// import { FaCheck, FaTimes } from "react-icons/fa";
 import { API_BASE_URL } from "../config";
+import Cookies from "js-cookie";
 
 export default function DashComments() {
   const { currentUser } = useSelector((state) => state.user);
@@ -14,7 +15,15 @@ export default function DashComments() {
   useEffect(() => {
     const fetchComments = async () => {
       try {
-        const res = await fetch(`${API_BASE_URL}/api/comment/getcomments`);
+        const res = await fetch(`${API_BASE_URL}/api/comment/getcomments`, {
+          method: "GET",
+
+          headers: {
+            "Content-Type": "application/json",
+            jwt_token: ` ${Cookies.get("token")}`,
+            // You can add more headers if needed
+          },
+        });
         const data = await res.json();
         if (res.ok) {
           setComments(data.comments);
@@ -35,7 +44,16 @@ export default function DashComments() {
     const startIndex = comments.length;
     try {
       const res = await fetch(
-        `${API_BASE_URL}/api/comment/getcomments?startIndex=${startIndex}`
+        `${API_BASE_URL}/api/comment/getcomments?startIndex=${startIndex}`,
+        {
+          method: "GET",
+
+          headers: {
+            "Content-Type": "application/json",
+            jwt_token: ` ${Cookies.get("token")}`,
+            // You can add more headers if needed
+          },
+        }
       );
       const data = await res.json();
       if (res.ok) {
@@ -56,6 +74,11 @@ export default function DashComments() {
         `${API_BASE_URL}/api/comment/deleteComment/${commentIdToDelete}`,
         {
           method: "DELETE",
+          headers: {
+            "Content-Type": "application/json",
+            jwt_token: ` ${Cookies.get("token")}`,
+            // You can add more headers if needed
+          },
         }
       );
       const data = await res.json();

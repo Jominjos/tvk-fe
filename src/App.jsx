@@ -14,8 +14,8 @@ import PostPage from "./pages/PostPage";
 import ScrollToTop from "./components/ScrollToTop";
 import Search from "./pages/Search";
 import Login from "./pages/Login";
-
 //chck
+
 export default function App() {
   return (
     <BrowserRouter>

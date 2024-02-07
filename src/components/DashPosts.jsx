@@ -4,6 +4,7 @@ import { useSelector } from "react-redux";
 import { Link } from "react-router-dom";
 import { HiOutlineExclamationCircle } from "react-icons/hi";
 import { API_BASE_URL } from "../config";
+import Cookies from "js-cookie";
 
 // import { set } from 'mongoose';
 
@@ -17,7 +18,16 @@ export default function DashPosts() {
     const fetchPosts = async () => {
       try {
         const res = await fetch(
-          `${API_BASE_URL}/api/post/getposts?userId=${currentUser._id}`
+          `${API_BASE_URL}/api/post/getposts?userId=${currentUser._id}`,
+          {
+            method: "GET",
+
+            headers: {
+              "Content-Type": "application/json",
+              jwt_token: ` ${Cookies.get("token")}`,
+              // You can add more headers if needed
+            },
+          }
         );
         const data = await res.json();
         if (res.ok) {
@@ -39,7 +49,17 @@ export default function DashPosts() {
     const startIndex = userPosts.length;
     try {
       const res = await fetch(
-        `${API_BASE_URL}/api/post/getposts?userId=${currentUser._id}&startIndex=${startIndex}`
+        `${API_BASE_URL}/api/post/getposts?userId=${currentUser._id}&startIndex=${startIndex}`,
+
+        {
+          method: "GET",
+
+          headers: {
+            "Content-Type": "application/json",
+            jwt_token: ` ${Cookies.get("token")}`,
+            // You can add more headers if needed
+          },
+        }
       );
       const data = await res.json();
       if (res.ok) {
@@ -60,7 +80,13 @@ export default function DashPosts() {
         `${API_BASE_URL}/api/post/deletepost/${postIdToDelete}/${currentUser._id}`,
         {
           method: "DELETE",
+          headers: {
+            "Content-Type": "application/json",
+            jwt_token: ` ${Cookies.get("token")}`,
+            // You can add more headers if needed
+          },
         }
+        //
       );
       const data = await res.json();
       if (!res.ok) {

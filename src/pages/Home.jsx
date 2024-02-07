@@ -4,6 +4,8 @@ import { useEffect, useState } from "react";
 import PostCard from "../components/PostCard";
 import Carousel from "../components/Carousel";
 import { API_BASE_URL } from "../config";
+import Cookies from "js-cookie";
+
 export default function Home() {
   const [posts, setPosts] = useState([]);
   const slides = [
@@ -18,11 +20,16 @@ export default function Home() {
         credentials: "include",
         headers: {
           "Content-Type": "application/json",
+          jwt_token: ` ${Cookies.get("token")}`,
           // Other headers if needed
         },
       });
       const data = await res.json();
+      //
+
+      //
       console.log("getting posts");
+
       setPosts(data.posts);
       // setPosts([
       //   {

@@ -5,6 +5,7 @@ import { Link, useParams } from "react-router-dom";
 import CommentSection from "../components/CommentSection";
 import PostCard from "../components/PostCard";
 import { API_BASE_URL } from "../config";
+import Cookies from "js-cookie";
 
 export default function PostPage() {
   const { postSlug } = useParams();
@@ -18,8 +19,18 @@ export default function PostPage() {
       try {
         setLoading(true);
         const res = await fetch(
-          `${API_BASE_URL}/api/post/getposts?slug=${postSlug}`
+          `${API_BASE_URL}/api/post/getposts?slug=${postSlug}`,
+          {
+            method: "GET",
+
+            headers: {
+              "Content-Type": "application/json",
+              jwt_token: ` ${Cookies.get("token")}`,
+              // You can add more headers if needed
+            },
+          }
         );
+        //
         const data = await res.json();
         if (!res.ok) {
           setError(true);
@@ -42,7 +53,16 @@ export default function PostPage() {
   useEffect(() => {
     try {
       const fetchRecentPosts = async () => {
-        const res = await fetch(`${API_BASE_URL}/api/post/getposts?limit=3`);
+        const res = await fetch(`${API_BASE_URL}/api/post/getposts?limit=3`, {
+          method: "GET",
+
+          headers: {
+            "Content-Type": "application/json",
+            jwt_token: ` ${Cookies.get("token")}`,
+            // You can add more headers if needed
+          },
+        });
+
         const data = await res.json();
         if (res.ok) {
           setRecentPosts(data.posts);

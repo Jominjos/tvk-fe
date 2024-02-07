@@ -4,6 +4,7 @@ import { useSelector } from "react-redux";
 import { HiOutlineExclamationCircle } from "react-icons/hi";
 import { FaCheck, FaTimes } from "react-icons/fa";
 import { API_BASE_URL } from "../config";
+import Cookies from "js-cookie";
 
 export default function DashUsers() {
   const { currentUser } = useSelector((state) => state.user);
@@ -14,7 +15,15 @@ export default function DashUsers() {
   useEffect(() => {
     const fetchUsers = async () => {
       try {
-        const res = await fetch(`${API_BASE_URL}/api/user/getusers`);
+        const res = await fetch(`${API_BASE_URL}/api/user/getusers`, {
+          method: "GET",
+
+          headers: {
+            "Content-Type": "application/json",
+            jwt_token: ` ${Cookies.get("token")}`,
+            // You can add more headers if needed
+          },
+        });
         const data = await res.json();
         if (res.ok) {
           setUsers(data.users);
@@ -35,7 +44,16 @@ export default function DashUsers() {
     const startIndex = users.length;
     try {
       const res = await fetch(
-        `${API_BASE_URL}/api/user/getusers?startIndex=${startIndex}`
+        `${API_BASE_URL}/api/user/getusers?startIndex=${startIndex}`,
+        {
+          method: "GET",
+
+          headers: {
+            "Content-Type": "application/json",
+            jwt_token: ` ${Cookies.get("token")}`,
+            // You can add more headers if needed
+          },
+        }
       );
       const data = await res.json();
       if (res.ok) {
@@ -55,6 +73,12 @@ export default function DashUsers() {
         `${API_BASE_URL}/api/user/delete/${userIdToDelete}`,
         {
           method: "DELETE",
+
+          headers: {
+            "Content-Type": "application/json",
+            jwt_token: ` ${Cookies.get("token")}`,
+            // You can add more headers if needed
+          },
         }
       );
       const data = await res.json();

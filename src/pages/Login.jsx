@@ -8,7 +8,7 @@ import {
   signInFailure,
 } from "../redux/user/userSlice";
 import { API_BASE_URL } from "../config";
-
+import Cookies from "js-cookie";
 // import OAuth from "../components/OAuth";
 
 export default function Login() {
@@ -31,12 +31,23 @@ export default function Login() {
         headers: { "Content-Type": "application/json" },
         body: JSON.stringify(formData),
       });
+      console.log(res);
       const data = await res.json();
+
+      console.log(data, data1);
       if (data.success === false) {
         dispatch(signInFailure(data.message));
       }
 
       if (res.ok) {
+        // console.log(data.auth_token);
+        // Cookies.set("token", data.auth_token, { expires: 7 });
+        Cookies.set("token", data.auth_token, {
+          expires: 7,
+          sameSite: "none",
+          secure: true,
+        });
+
         dispatch(signInSuccess(data));
         navigate("/");
       }

@@ -3,6 +3,7 @@ import { useEffect, useState } from "react";
 import { useLocation, useNavigate } from "react-router-dom";
 import PostCard from "../components/PostCard";
 import { API_BASE_URL } from "../config";
+import Cookies from "js-cookie";
 
 export default function Search() {
   const [sidebarData, setSidebarData] = useState({
@@ -38,7 +39,16 @@ export default function Search() {
       setLoading(true);
       const searchQuery = urlParams.toString();
       const res = await fetch(
-        `${API_BASE_URL}/api/post/getposts?${searchQuery}`
+        `${API_BASE_URL}/api/post/getposts?${searchQuery}`,
+        {
+          method: "GET",
+
+          headers: {
+            "Content-Type": "application/json",
+            jwt_token: ` ${Cookies.get("token")}`,
+            // You can add more headers if needed
+          },
+        }
       );
       if (!res.ok) {
         setLoading(false);
@@ -88,7 +98,18 @@ export default function Search() {
     const urlParams = new URLSearchParams(location.search);
     urlParams.set("startIndex", startIndex);
     const searchQuery = urlParams.toString();
-    const res = await fetch(`${API_BASE_URL}/api/post/getposts?${searchQuery}`);
+    const res = await fetch(
+      `${API_BASE_URL}/api/post/getposts?${searchQuery}`,
+      {
+        method: "GET",
+
+        headers: {
+          "Content-Type": "application/json",
+          jwt_token: ` ${Cookies.get("token")}`,
+          // You can add more headers if needed
+        },
+      }
+    );
     if (!res.ok) {
       return;
     }

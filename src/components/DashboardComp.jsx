@@ -9,6 +9,7 @@ import {
 import { Button, Table } from "flowbite-react";
 import { Link } from "react-router-dom";
 import { API_BASE_URL } from "../config";
+import Cookies from "js-cookie";
 
 export default function DashboardComp() {
   const [users, setUsers] = useState([]);
@@ -24,7 +25,15 @@ export default function DashboardComp() {
   useEffect(() => {
     const fetchUsers = async () => {
       try {
-        const res = await fetch(`${API_BASE_URL}/api/user/getusers?limit=5`);
+        const res = await fetch(`${API_BASE_URL}/api/user/getusers?limit=5`, {
+          method: "GET",
+
+          headers: {
+            "Content-Type": "application/json",
+            jwt_token: ` ${Cookies.get("token")}`,
+            // You can add more headers if needed
+          },
+        });
         const data = await res.json();
         if (res.ok) {
           setUsers(data.users);
@@ -37,7 +46,15 @@ export default function DashboardComp() {
     };
     const fetchPosts = async () => {
       try {
-        const res = await fetch(`${API_BASE_URL}/api/post/getposts?limit=5`);
+        const res = await fetch(`${API_BASE_URL}/api/post/getposts?limit=5`, {
+          method: "GET",
+
+          headers: {
+            "Content-Type": "application/json",
+            jwt_token: ` ${Cookies.get("token")}`,
+            // You can add more headers if needed
+          },
+        });
         const data = await res.json();
         if (res.ok) {
           setPosts(data.posts);
@@ -51,7 +68,16 @@ export default function DashboardComp() {
     const fetchComments = async () => {
       try {
         const res = await fetch(
-          `${API_BASE_URL}/api/comment/getcomments?limit=5`
+          `${API_BASE_URL}/api/comment/getcomments?limit=5`,
+          {
+            method: "GET",
+
+            headers: {
+              "Content-Type": "application/json",
+              jwt_token: ` ${Cookies.get("token")}`,
+              // You can add more headers if needed
+            },
+          }
         );
         const data = await res.json();
         if (res.ok) {

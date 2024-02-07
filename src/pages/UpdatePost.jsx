@@ -14,6 +14,7 @@ import "react-circular-progressbar/dist/styles.css";
 import { useNavigate, useParams } from "react-router-dom";
 import { useSelector } from "react-redux";
 import { API_BASE_URL } from "../config";
+import Cookies from "js-cookie";
 
 export default function UpdatePost() {
   const [file, setFile] = useState(null);
@@ -95,6 +96,7 @@ export default function UpdatePost() {
           method: "PUT",
           headers: {
             "Content-Type": "application/json",
+            jwt_token: ` ${Cookies.get("token")}`,
           },
           body: JSON.stringify(formData),
         }

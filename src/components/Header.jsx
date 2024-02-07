@@ -7,6 +7,7 @@ import { toggleTheme } from "../redux/theme/themeSlice";
 import { signoutSuccess } from "../redux/user/userSlice";
 import { useEffect, useState } from "react";
 import { API_BASE_URL } from "../config";
+import Cookies from "js-cookie";
 
 export default function Header() {
   const path = useLocation().pathname;
@@ -26,6 +27,12 @@ export default function Header() {
   }, [location.search]);
 
   const handleSignout = async () => {
+    const cookies = Cookies.get(); // Get all cookies
+
+    for (const cookieName in cookies) {
+      // Remove each cookie
+      Cookies.remove(cookieName);
+    }
     try {
       const res = await fetch(`${API_BASE_URL}/api/user/signout`, {
         method: "POST",

@@ -13,6 +13,7 @@ import { CircularProgressbar } from "react-circular-progressbar";
 import "react-circular-progressbar/dist/styles.css";
 import { useNavigate } from "react-router-dom";
 import { API_BASE_URL } from "../config";
+import Cookies from "js-cookie";
 
 export default function CreatePost() {
   const [file, setFile] = useState(null);
@@ -66,6 +67,7 @@ export default function CreatePost() {
         method: "POST",
         headers: {
           "Content-Type": "application/json",
+          jwt_token: ` ${Cookies.get("token")}`,
         },
         body: JSON.stringify(formData),
       });
@@ -104,9 +106,11 @@ export default function CreatePost() {
             }
           >
             <option value="uncategorized">Select a category</option>
-            <option value="javascript">JavaScript</option>
-            <option value="reactjs">React.js</option>
-            <option value="nextjs">Next.js</option>
+            <option value="Service">Service</option>
+            <option value="Election">Election</option>
+            <option value="Eduction">Eduction</option>
+            <option value="Awareness">Awareness</option>
+            <option value="Protest">Protest</option>
           </Select>
         </div>
         <div className="flex gap-4 items-center justify-between border-4 border-teal-500 border-dotted p-3">

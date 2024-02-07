@@ -4,6 +4,8 @@ import { FaThumbsUp } from "react-icons/fa";
 import { useSelector } from "react-redux";
 import { Button, Textarea } from "flowbite-react";
 import { API_BASE_URL } from "../config";
+import Cookies from "js-cookie";
+
 // import { set } from 'mongoose';
 
 export default function Comment({ comment, onLike, onEdit, onDelete }) {
@@ -14,7 +16,15 @@ export default function Comment({ comment, onLike, onEdit, onDelete }) {
   useEffect(() => {
     const getUser = async () => {
       try {
-        const res = await fetch(`${API_BASE_URL}/api/user/${comment.userId}`);
+        const res = await fetch(`${API_BASE_URL}/api/user/${comment.userId}`, {
+          method: "GET",
+
+          headers: {
+            "Content-Type": "application/json",
+            jwt_token: ` ${Cookies.get("token")}`,
+            // You can add more headers if needed
+          },
+        });
         const data = await res.json();
         if (res.ok) {
           setUser(data);
@@ -39,6 +49,7 @@ export default function Comment({ comment, onLike, onEdit, onDelete }) {
           method: "PUT",
           headers: {
             "Content-Type": "application/json",
+            jwt_token: ` ${Cookies.get("token")}`,
           },
           body: JSON.stringify({
             content: editedContent,

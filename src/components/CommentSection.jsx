@@ -5,6 +5,7 @@ import { Link, useNavigate } from "react-router-dom";
 import Comment from "./Comment";
 import { HiOutlineExclamationCircle } from "react-icons/hi";
 import { API_BASE_URL } from "../config";
+import Cookies from "js-cookie";
 
 export default function CommentSection({ postId }) {
   const { currentUser } = useSelector((state) => state.user);
@@ -24,6 +25,7 @@ export default function CommentSection({ postId }) {
         method: "POST",
         headers: {
           "Content-Type": "application/json",
+          jwt_token: ` ${Cookies.get("token")}`,
         },
         body: JSON.stringify({
           content: comment,
@@ -46,7 +48,16 @@ export default function CommentSection({ postId }) {
     const getComments = async () => {
       try {
         const res = await fetch(
-          `${API_BASE_URL}/api/comment/getPostComments/${postId}`
+          `${API_BASE_URL}/api/comment/getPostComments/${postId}`,
+          {
+            method: "GET",
+
+            headers: {
+              "Content-Type": "application/json",
+              jwt_token: ` ${Cookies.get("token")}`,
+              // You can add more headers if needed
+            },
+          }
         );
         if (res.ok) {
           const data = await res.json();
@@ -69,6 +80,11 @@ export default function CommentSection({ postId }) {
         `${API_BASE_URL}/api/comment/likeComment/${commentId}`,
         {
           method: "PUT",
+          headers: {
+            "Content-Type": "application/json",
+            jwt_token: ` ${Cookies.get("token")}`,
+            // You can add more headers if needed
+          },
         }
       );
       if (res.ok) {
@@ -109,6 +125,12 @@ export default function CommentSection({ postId }) {
         `${API_BASE_URL}/api/comment/deleteComment/${commentId}`,
         {
           method: "DELETE",
+
+          headers: {
+            "Content-Type": "application/json",
+            jwt_token: ` ${Cookies.get("token")}`,
+            // You can add more headers if needed
+          },
         }
       );
       if (res.ok) {

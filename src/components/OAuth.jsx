@@ -6,6 +6,7 @@ import { useDispatch } from "react-redux";
 import { signInSuccess } from "../redux/user/userSlice";
 import { useNavigate } from "react-router-dom";
 import { API_BASE_URL } from "../config";
+import Cookies from "js-cookie";
 
 export default function OAuth() {
   const auth = getAuth(app);
@@ -43,7 +44,10 @@ export default function OAuth() {
 
       const res = await fetch(`${API_BASE_URL}/api/auth/google`, {
         method: "POST",
-        headers: { "Content-Type": "application/json" },
+        headers: {
+          "Content-Type": "application/json",
+          jwt_token: ` ${Cookies.get("token")}`,
+        },
         body: JSON.stringify({
           name: resultsFromGoogle.user.displayName,
           email: resultsFromGoogle.user.email,

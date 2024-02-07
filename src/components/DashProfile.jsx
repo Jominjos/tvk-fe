@@ -23,6 +23,7 @@ import { useDispatch } from "react-redux";
 import { HiOutlineExclamationCircle } from "react-icons/hi";
 import { Link } from "react-router-dom";
 import { API_BASE_URL } from "../config";
+import Cookies from "js-cookie";
 
 export default function DashProfile() {
   const { currentUser, error, loading } = useSelector((state) => state.user);
@@ -118,6 +119,7 @@ export default function DashProfile() {
           method: "PUT",
           headers: {
             "Content-Type": "application/json",
+            jwt_token: ` ${Cookies.get("token")}`,
           },
           body: JSON.stringify(formData),
         }
@@ -143,6 +145,7 @@ export default function DashProfile() {
         `${API_BASE_URL}/api/user/delete/${currentUser._id}`,
         {
           method: "DELETE",
+          jwt_token: ` ${Cookies.get("token")}`,
         }
       );
       const data = await res.json();
@@ -160,6 +163,11 @@ export default function DashProfile() {
     try {
       const res = await fetch(`${API_BASE_URL}/api/user/signout`, {
         method: "POST",
+        headers: {
+          "Content-Type": "application/json",
+          jwt_token: ` ${Cookies.get("token")}`,
+          // You can add more headers if needed
+        },
       });
       const data = await res.json();
       if (!res.ok) {
