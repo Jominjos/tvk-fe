@@ -9,7 +9,8 @@ import Cookies from "js-cookie";
 export default function Home() {
   const [posts, setPosts] = useState([]);
   const slides = [
-    "https://live.staticflickr.com/65535/52982630415_6af366993c_h.jpg",
+    //"https://live.staticflickr.com/65535/52982630415_6af366993c_h.jpg",
+    "https://firebasestorage.googleapis.com/v0/b/tvkblog-4b39f.appspot.com/o/speech.jpg?alt=media&token=d54453e6-e2ec-4038-aafd-103b3ff4c50c",
     "https://firebasestorage.googleapis.com/v0/b/tvkblog-4b39f.appspot.com/o/patti.jpg?alt=media&token=3c54c481-7674-41f8-9457-013bd9052925",
     "https://firebasestorage.googleapis.com/v0/b/tvkblog-4b39f.appspot.com/o/tholar.jpg?alt=media&token=b95ddeb5-0125-4f42-860d-0446839d36e6",
     // "https://live.staticflickr.com/65535/52982259731_5c36b72b09_b.jpg",
