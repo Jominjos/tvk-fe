@@ -10,8 +10,10 @@ export default function Home() {
   const [posts, setPosts] = useState([]);
   const slides = [
     "https://live.staticflickr.com/65535/52982630415_6af366993c_h.jpg",
-    "https://live.staticflickr.com/65535/52982259731_5c36b72b09_b.jpg",
-    "https://live.staticflickr.com/65535/52980540197_be36a66b41_b.jpg",
+    "https://firebasestorage.googleapis.com/v0/b/tvkblog-4b39f.appspot.com/o/patti.jpg?alt=media&token=3c54c481-7674-41f8-9457-013bd9052925",
+    "https://firebasestorage.googleapis.com/v0/b/tvkblog-4b39f.appspot.com/o/tholar.jpg?alt=media&token=b95ddeb5-0125-4f42-860d-0446839d36e6",
+    // "https://live.staticflickr.com/65535/52982259731_5c36b72b09_b.jpg",
+    //"https://live.staticflickr.com/65535/52980540197_be36a66b41_b.jpg",
   ];
   useEffect(() => {
     const fetchPosts = async () => {
