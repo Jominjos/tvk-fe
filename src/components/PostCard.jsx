@@ -13,9 +13,8 @@ export default function PostCard({ post }) {
       <div className="p-3 flex flex-col gap-2">
         <p className="text-lg font-semibold line-clamp-2">{post.title}</p>
         <div className="flex justify-between ">
-          <span>
-            {/* <i className="far fa-calendar-alt"></i> */}
-            dd/mm/yyyy
+          <span className="italic text-xs">
+            {post && new Date(post.createdAt).toLocaleDateString()}
           </span>
 
           <div className="flex ">
