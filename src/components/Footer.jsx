@@ -23,7 +23,7 @@ export default function FooterCom() {
               Blog
             </Link>
           </div>
-          <div className="grid grid-cols-2 gap-8 mt-4 sm:grid-cols-3 sm:gap-6">
+          {/* <div className="grid grid-cols-2 gap-8 mt-4 sm:grid-cols-3 sm:gap-6">
             <div>
               <Footer.Title title="About" />
               <Footer.LinkGroup col>
@@ -56,7 +56,7 @@ export default function FooterCom() {
                 <Footer.Link href="#">Terms &amp; Conditions</Footer.Link>
               </Footer.LinkGroup>
             </div>
-          </div>
+          </div> */}
         </div>
         <Footer.Divider />
         <div className="w-full sm:flex sm:items-center sm:justify-between">
@@ -66,14 +66,31 @@ export default function FooterCom() {
             year={new Date().getFullYear()}
           />
           <div className="flex gap-6 sm:mt-0 mt-4 sm:justify-center">
-            <Footer.Icon href="#" icon={BsFacebook} />
-            <Footer.Icon href="#" icon={BsInstagram} />
-            <Footer.Icon href="#" icon={BsTwitter} />
             <Footer.Icon
-              href="https://github.com/sahandghavidel"
-              icon={BsGithub}
+              href="https://www.facebook.com/tvkvijayhq/"
+              icon={BsFacebook}
+              target="_blank"
             />
-            <Footer.Icon href="#" icon={BsDribbble} />
+            <Footer.Icon
+              href="https://www.instagram.com/tvkvijayhq/"
+              icon={BsInstagram}
+              target="_blank"
+            />
+            <Footer.Icon
+              href="https://x.com/tvkvijayhq"
+              icon={BsTwitter}
+              target="_blank"
+            />
+            {/* <Footer.Icon
+        href="https://github.com/sahandghavidel"
+        icon={BsGithub}
+        target="_blank"
+    /> */}
+            {/* <Footer.Icon
+        href="#"
+        icon={BsDribbble}
+        target="_blank"
+    /> */}
           </div>
         </div>
       </div>
