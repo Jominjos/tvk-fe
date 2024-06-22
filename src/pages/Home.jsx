@@ -4,7 +4,7 @@ import PostCard from "../components/PostCard";
 import Carousel from "../components/Carousel";
 import { API_BASE_URL } from "../config";
 import Cookies from "js-cookie";
-
+import Carouselpc from "../components/CarouselPc";
 export default function Home() {
   const [posts, setPosts] = useState([]);
   const [isMobile, setIsMobile] = useState(false);
@@ -26,9 +26,9 @@ export default function Home() {
         "https://firebasestorage.googleapis.com/v0/b/tvkblog-4b39f.appspot.com/o/tholar.jpg?alt=media&token=b95ddeb5-0125-4f42-860d-0446839d36e6",
       ]
     : [
-        "https://live.staticflickr.com/65535/52982259731_5c36b72b09_b.jpg",
-        "https://live.staticflickr.com/65535/52980540197_be36a66b41_b.jpg",
-        "https://live.staticflickr.com/65535/52982630415_6af366993c_h.jpg",
+        "https://firebasestorage.googleapis.com/v0/b/tvkblog-4b39f.appspot.com/o/pattiPc.jpg?alt=media&token=3c0db5ae-2e52-4b30-a764-c9b5ee0d3c1e",
+        // "https://live.staticflickr.com/65535/52980540197_be36a66b41_b.jpg",
+        // "https://live.staticflickr.com/65535/52982630415_6af366993c_h.jpg",
         // Additional desktop slides if needed
       ];
 
@@ -59,11 +59,19 @@ export default function Home() {
   return (
     <div>
       <div>
-        <Carousel>
-          {slides.map((s) => (
-            <img src={s} key={s} />
-          ))}
-        </Carousel>
+        {isMobile ? (
+          <Carousel>
+            {slides.map((s) => (
+              <img src={s} key={s} />
+            ))}
+          </Carousel>
+        ) : (
+          <Carouselpc>
+            {slides.map((s) => (
+              <img src={s} key={s} />
+            ))}
+          </Carouselpc>
+        )}
       </div>
       <div className="max-w-6xl mx-auto p-3 flex flex-col gap-8 py-7">
         {posts && posts.length > 0 && (
