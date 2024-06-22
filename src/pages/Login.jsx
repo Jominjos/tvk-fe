@@ -67,8 +67,8 @@ export default function Login() {
             Blog
           </Link>
           <p className="text-sm mt-5">
-            This is a demo project. You can login with your email and password
-            or with Google.
+            This is a blog website of TVK. You can login with your email and
+            password.
           </p>
         </div>
         {/* right */}
