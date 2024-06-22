@@ -157,7 +157,7 @@ export default function Search() {
               <option value="uncategorized">Uncategorized</option>
               <option value="Service">Service</option>
               <option value="Election">Election</option>
-              {/* <option value="javascript">JavaScript</option> */}
+              <option value="Welfare">Welfare</option>
             </Select>
           </div>
           <Button type="submit" outline gradientDuoTone="purpleToPink">
