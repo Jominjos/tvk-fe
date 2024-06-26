@@ -59,11 +59,16 @@ export default function Header() {
   return (
     <Navbar className="border-b-2">
       <div className="">
-        <img
-          style={{ width: 40, margin: 0, borderRadius: 50 }}
-          id="logo"
-          src="tvk_favicon.jpg"
-        />
+        <Link
+          to="/"
+          className="self-center whitespace-nowrap text-sm sm:text-xl font-semibold dark:text-white"
+        >
+          <img
+            style={{ width: 40, margin: 0, borderRadius: 50 }}
+            id="logo"
+            src="tvk_favicon.jpg"
+          />
+        </Link>
       </div>
       <Link
         to="/"
